@@ -1,0 +1,174 @@
+<div class="text-center">
+    <img style="width: 10%;"
+     src="https://firebasestorage.googleapis.com/v0/b/covid19-92959.appspot.com/o/logo.png?alt=media&token=0a0c1885-f42d-4491-8e35-a04cf4b71b46"
+     alt="COVID-19 image"
+    />
+    <h1>COVID-19</h1>
+    <p>Live Updates and Statistics</p> 
+</div>
+
+<div class="text-center mt-3">
+    <table class="table table-bordered">
+        <thead>
+            <tr style="background-color: black;">
+                <th colspan="2" style="color: white;"><a routerLink="/homepage/">Worldwide</a> > {{ countryName }}</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<div class="text-center">
+    <table class="table table-bordered">
+        <thead>
+            <tr style="background-color: #aaaaaa;">
+                <th colspan="2">Corona Virus Summary in {{ countryName }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="background-color: #f0cf65;">
+                <td>Total Cases</td>
+                <td>{{ summary.totalCases }}</td>
+            </tr>
+            <tr style="background-color: #f0cf65;">
+                <td>New Cases</td>
+                <td>{{ summary.newCases }}</td>
+            </tr>
+            <tr style="background-color:  #f0cf65;">
+                <td>Active Cases</td>
+                <td>{{ summary.activeCases }}</td>
+            </tr>
+            <tr style="background-color: #93b5c6;">
+                <td>Total Recovered</td>
+                <td>{{ summary.totalRecovered }}</td>
+            </tr>
+            <tr style="background-color: #93b5c6;">
+                <td>New Recovered</td>
+                <td>{{ summary.newRecovered }}</td>
+            </tr>
+            <tr style="background-color: #93b5c6;">
+                <td>Recovery Rate</td>
+                <td>{{ summary.recoveryRate }}%</td>
+            </tr>
+            <tr style="background-color: #d7816a;">
+                <td>Total Deaths</td>
+                <td>{{ summary.totalDeaths }}</td>
+            </tr>
+            <tr style="background-color: #d7816a;">
+                <td>New Deaths</td>
+                <td>{{ summary.newDeaths }}</td>
+            </tr>
+            <tr style="background-color: #d7816a;">
+                <td>Mortality Rate</td>
+                <td>{{ summary.mortalityRate }}%</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+
+<div class="text-center mt-3">
+    <table class="table table-bordered">
+        <thead>
+            <tr style="background-color: #aaaaaa;">
+                <th colspan="2">Corona Virus Cases Distribution in {{ countryName }}</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<div style="display: block;" *ngIf="pieChartData">
+    <canvas baseChart
+    [datasets]="pieChartData"
+    [labels]="pieChartLabels"
+    [chartType]="pieChartType"
+    [options]="pieChartOptions"
+    [legend]="pieChartLegend">
+    </canvas>
+</div>
+
+<div class="text-center mt-3">
+    <table class="table table-bordered">
+        <thead>
+            <tr style="background-color: #aaaaaa;">
+                <th colspan="2">Daily Corona Virus Cases in {{ countryName }}</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+<div style="display: block;">
+    <canvas baseChart
+    [datasets]="barChartData"
+    [labels]="barChartLabels"
+    [chartType]="barChartType"
+    [options]="barChartOptions"
+    [legend]="barChartLegend">
+    </canvas>
+</div>
+
+<div class="text-center mt-3">
+    <table class="table table-bordered">
+        <thead>
+            <tr style="background-color: #aaaaaa;">
+                <th colspan="2">Total Corona Virus Cases {{ countryName }}</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+<div style="display: block;">
+    <canvas baseChart
+    [datasets]="lineChartData"
+    [labels]="lineChartLabels"
+    [chartType]="lineChartType"
+    [options]="lineChartOptions"
+    [legend]="lineChartLegend">
+    </canvas>
+</div>
+
+
+
+<div class="mt-5">
+<table class="table table-bordered">
+    <thead class="text-center">
+        <tr style="background-color: #aaaaaa;">
+            <th colspan="4">Corona Virus news in {{ countryName }}</th>
+        </tr>
+        <tr>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Country</th>
+            <th>Author</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let new of news">
+            <td>{{new.date.toDate() | date}}</td>
+            <td>{{new.description}}</td>
+            <td>{{new.country}}</td>
+            <td>{{new.author_displayName}}</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+<div class="row my-5">
+    <div class="col-sm-6">
+        <button class="btn btn-info"><a routerLink="/homepage/" style="color: white;"> Back to homepage </a></button>
+    </div>
+    <div class="col-sm-6 text-right">
+        <button class="btn btn-info"><a routerLink="/signin/" style="color: white;"> Add news </a></button>
+    </div>
+</div>
+
+<div class="text-center mt-10">
+    <table class="table table-bordered">
+        <thead>
+            <tr style="background-color: #e8e8e8;">
+                <th colspan="2">
+                    Sources : <a href="https://api.covid19api.com/">COVID-19 API / Johns Hopkins CSSE</a>
+                </th>
+            </tr>
+        </thead>
+    </table>
+</div>
